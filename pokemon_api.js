@@ -1,10 +1,9 @@
 // Importa a biblioteca para ler dados do usuário no terminal
 const prompt = require('prompt-sync')();
 
-// Função assíncrona para consultar um Pokémon na API
+// Função para consultar um Pokémon na API
 async function consultarPokemon() {
 
-    // Pede o nome do Pokémon para o usuário
     let pokemon = prompt("Digite o nome do pokemon: ");
 
     // Remove espaços e deixa tudo em minúsculo
@@ -16,7 +15,6 @@ async function consultarPokemon() {
     // Faz a requisição para a API
     const resposta = await fetch(url);
 
-    // Verifica se houve erro na consulta
     if (!resposta.ok) {
         console.log("Erro na consulta");
         return;
@@ -25,7 +23,7 @@ async function consultarPokemon() {
     // Converte a resposta para JSON
     const dados = await resposta.json();
 
-    // Exibe os dados no console
+    // Exibe os dados
     console.log("\n=== Dados do Pokémon ===");
     console.log(`Nome: ${dados.name}`);
     console.log(`Altura: ${dados.height} m`);
@@ -33,5 +31,5 @@ async function consultarPokemon() {
     console.log(`Tipo: ${dados.types[0].type.name}`);
 }
 
-// Executa a função
+// Roda a função
 consultarPokemon();
